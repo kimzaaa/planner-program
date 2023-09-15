@@ -17,6 +17,7 @@ class Window(QMainWindow):
     def UiComponents(self):
         fontbold = QFont("Roboto Mono Medium", 15)
         fontboldsmall = QFont("Roboto Mono Medium", 8)
+        fontboldmed = QFont("Roboto Mono Medium", 11)
         font = QFont("Roboto Mono", 15)
         fontthin = QFont("Roboto Mono Thin", 15)
 
@@ -31,11 +32,11 @@ class Window(QMainWindow):
         self.bgimgplaceholder.setGraphicsEffect(self.opacity_effect)
 
         self.sidetabbar = QLabel(" ", self)
-        self.sidetabbar.setGeometry(0, 200, 200, 800)
+        self.sidetabbar.setGeometry(0, 200, 210, 800)
         self.sidetabbar.setStyleSheet("background-color : #404040 ")
 
         self.settitlename = QLineEdit("School work", self)
-        self.settitlename.setGeometry(15, 240, 125, 20)
+        self.settitlename.setGeometry(15, 270, 125, 20)
         self.settitlename.setStyleSheet(
             "QLineEdit"
             "{"
@@ -47,7 +48,7 @@ class Window(QMainWindow):
         self.settitlename.setFont(fontboldsmall)
 
         self.settitlebtn = QPushButton("✔", self)
-        self.settitlebtn.setGeometry(145, 240, 20, 20)
+        self.settitlebtn.setGeometry(145, 270, 20, 20)
         self.settitlebtn.clicked.connect(self.settitle)
         self.settitlebtn.setStyleSheet(
             "QPushButton"
@@ -58,7 +59,7 @@ class Window(QMainWindow):
             "}"
         )
         self.unsettitlebtn = QPushButton("X", self)
-        self.unsettitlebtn.setGeometry(170, 240, 20, 20)
+        self.unsettitlebtn.setGeometry(170, 270, 20, 20)
         self.unsettitlebtn.clicked.connect(self.unsettitle)
         self.unsettitlebtn.setStyleSheet(
             "QPushButton"
@@ -68,6 +69,10 @@ class Window(QMainWindow):
             "color : white;"
             "}"
         )
+        self.settitleheader = QLabel("Set Planner Name", self)
+        self.settitleheader.setGeometry(35, 250, 200, 10)
+        self.settitleheader.setStyleSheet("color:white")
+        self.settitleheader.setFont(fontboldsmall)
 
         self.main = QLabel(" ", self)
         self.main.setGeometry(200, 200, 1000, 800)
@@ -85,6 +90,102 @@ class Window(QMainWindow):
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.showTime)
         self.timer.start(100)
+        # checklist
+        self.checklistheader = QLabel("Add Checklist", self)
+        self.checklistheader.setStyleSheet("color: white")
+        self.checklistheader.setGeometry(50, 300, 200, 10)
+        self.checklistheader.setFont(fontboldsmall)
+
+        self.checklistwidget = QListWidget(self)
+        self.checklistwidget.setStyleSheet(
+            "QListWidget"
+            "{"
+            "background : #272727;"
+            "border : #272727;"
+            "color : white;"
+            "}"
+        )
+        self.checklistwidget.setGeometry(800, 350, 350, 400)
+        self.checklistwidget.setFont(fontboldsmall)
+        scroll_bar = QScrollBar(self)
+        scroll_bar.setStyleSheet(
+            "QScrollBar"
+            "{"
+            "background-color : transparent;"
+            "}"
+            "QScrollBar::handle"
+            "{"
+            "background : #494949;"
+            "}"
+            "QScrollBar::handle::pressed"
+            "{"
+            "background : #393939;"
+            "}"
+        )
+        self.checklistwidget.setVerticalScrollBar(scroll_bar)
+
+        self.checklisttext = QLabel("Checklist", self)
+        self.checklisttext.setStyleSheet("color:white")
+        self.checklisttext.setGeometry(935, 310, 150, 20)
+        self.checklisttext.setFont(fontboldmed)
+
+        self.setchecklistname = QLineEdit("example 1", self)
+        self.setchecklistname.setStyleSheet(
+            "QLineEdit"
+            "{"
+            "background : #545454;"
+            "border : #545454;"
+            "color : white;"
+            "}"
+        )
+        self.setchecklistname.setGeometry(0, 320, 125, 20)
+        self.setchecklistname.setFont(fontboldsmall)
+
+        self.setchecklistbtn = QPushButton("✔", self)
+        self.setchecklistbtn.setGeometry(130, 320, 20, 20)
+        self.setchecklistbtn.clicked.connect(self.setchecklist)
+        self.setchecklistbtn.setStyleSheet(
+            "QPushButton"
+            "{"
+            "background : #545454;"
+            "border : #545454;"
+            "color : white;"
+            "}"
+        )
+        self.unsetchecklistbtn = QPushButton("X", self)
+        self.unsetchecklistbtn.setGeometry(155, 320, 20, 20)
+        self.unsetchecklistbtn.clicked.connect(self.unsetchecklist)
+        self.unsetchecklistbtn.setStyleSheet(
+            "QPushButton"
+            "{"
+            "background : #545454;"
+            "border : #545454;"
+            "color : white;"
+            "}"
+        )
+        self.clearchecklistbtn = QPushButton("🗑", self)
+        self.clearchecklistbtn.setGeometry(180, 320, 20, 20)
+        self.clearchecklistbtn.clicked.connect(self.clearchecklist)
+        self.clearchecklistbtn.setStyleSheet(
+            "QPushButton"
+            "{"
+            "background : #545454;"
+            "border : #545454;"
+            "color : white;"
+            "}"
+        )
+
+        self.setting = QPushButton("⚙", self)
+        self.setting.setGeometry(5, 205, 20, 20)
+        self.setting.clicked.connect(self.settings)
+        self.setting.setStyleSheet(
+            "QPushButton"
+            "{"
+            "background : #545454;"
+            "border : #545454;"
+            "color : white;"
+            "}"
+        )
 
         self.setGeometry(0, 0, 1200, 800)
         self.show()
@@ -100,6 +201,21 @@ class Window(QMainWindow):
     def unsettitle(self):
         self.title.setText("Your Planner Title Here")
         self.settitlename.clear()
+
+    def setchecklist(self):
+        checklistitem = self.setchecklistname.text()
+        self.checklistwidget.addItem(checklistitem)
+
+    def unsetchecklist(self):
+        listclicked = self.checklistwidget.currentRow()
+        self.checklistwidget.takeItem(listclicked)
+
+    def clearchecklist(self):
+        self.checklistwidget.clear()
+
+    def settings(self):
+        # themes tab
+        pass
 
 
 App = QApplication(sys.argv)
