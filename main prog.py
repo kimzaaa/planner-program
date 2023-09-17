@@ -306,6 +306,35 @@ class Window(QMainWindow):
             "}"
         )
 
+        self.notesbg = QLabel(self)
+        self.notesbg.setStyleSheet(
+            "QLabel"
+            "{"
+            "background : #272727;"
+            "border : #272727;"
+            "color : white;"
+            "}"
+        )
+        self.notesbg.setGeometry(250, 350, 450, 100)
+
+        self.notesheader = QLabel("Notes", self)
+        self.notesheader.setStyleSheet("color: white")
+        self.notesheader.setGeometry(435, 320, 200, 20)
+        self.notesheader.setFont(fontboldmed)
+
+        self.notes = QPlainTextEdit(self)
+        self.notes.setStyleSheet(
+            "QPlainTextEdit"
+            "{"
+            "background : #272727;"
+            "border : #272727;"
+            "color : white;"
+            "}"
+        )
+        self.notes.setGeometry(260, 360, 430, 80)
+        self.notes.setFont(fontboldmed)
+        self.notes.setVerticalScrollBar(scroll_bar_vertical)  # makes the scrollbar gone
+
         self.setGeometry(0, 0, 1200, 800)
         self.show()
 
