@@ -306,6 +306,47 @@ class Window(QMainWindow):
             "}"
         )
 
+        self.save = QPushButton("💾", self)
+        self.save.setGeometry(30, 205, 20, 20)
+        self.save.clicked.connect(self.savee)
+        self.save.setStyleSheet(
+            "QPushButton"
+            "{"
+            "background : #545454;"
+            "border : #545454;"
+            "color : white;"
+            "}"
+        )
+
+        self.toggleheaders = QLabel("Toggle Widgets", self)
+        self.toggleheaders.setGeometry(45, 350, 100, 20)
+        self.toggleheaders.setFont(fontboldsmall)
+        self.toggleheaders.setStyleSheet("QLabel" "{" "color : white;" "}")
+
+        self.togglenotes = QPushButton("📚", self)
+        self.togglenotes.setGeometry(5, 385, 20, 20)
+        self.togglenotes.setCheckable(True)
+        self.togglenotes.clicked.connect(self.togglenotess)
+        self.togglenotes.setStyleSheet(
+            "QPushButton" "{" "background : #545454;" "border : #545454;" "}"
+        )
+
+        self.togglechecklist = QPushButton("📝", self)
+        self.togglechecklist.setGeometry(30, 385, 20, 20)
+        self.togglechecklist.setCheckable(True)
+        self.togglechecklist.clicked.connect(self.togglechecklists)
+        self.togglechecklist.setStyleSheet(
+            "QPushButton" "{" "background : #545454;" "border : #545454;" "}"
+        )
+
+        self.togglecalendar = QPushButton("📅", self)
+        self.togglecalendar.setGeometry(55, 385, 20, 20)
+        self.togglecalendar.setCheckable(True)
+        self.togglecalendar.clicked.connect(self.togglecalendarr)
+        self.togglecalendar.setStyleSheet(
+            "QPushButton" "{" "background : #545454;" "border : #545454;" "}"
+        )
+
         self.notesbg = QLabel(self)
         self.notesbg.setStyleSheet(
             "QLabel"
@@ -333,7 +374,44 @@ class Window(QMainWindow):
         )
         self.notes.setGeometry(260, 360, 430, 80)
         self.notes.setFont(fontboldmed)
-        self.notes.setVerticalScrollBar(scroll_bar_vertical)  # makes the scrollbar gone
+        # self.notes.setVerticalScrollBar(scroll_bar_vertical)
+
+        # calendarv1
+        """
+        self.calendar = QCalendarWidget(self)
+        self.calendar.setGeometry(260, 500, 430, 250)
+        self.calendar.setFont(fontboldsmall)
+        self.calendar.setGridVisible(True)
+        self.calendar.setVerticalHeaderFormat(QCalendarWidget.NoVerticalHeader)
+        self.calendar.setStyleSheet(
+            "QCalendarWidget QWidget"
+            "{"
+            "alternate-background-color : #272727;"
+            "background-color : #272727;"
+            "color:white;"
+            "selection-background-color: #4D4D4D;"
+            "selection-color: white;"
+            "}"
+            "QCalendarWidget QToolButton"
+            "{"
+            "background-color:#272727;"
+            "border: 2px solid #272727;"
+            "border-bottom: 0px;"
+            "border-top-left-radius: 5px;"
+            "color:white;"
+            "icon-size:0px"
+            "}"
+            "QCalendarWidget QAbstractItemView" 
+            "{"
+            "color: white;"
+            "}"
+        )
+
+        self.calendartitle = QLabel("Calendar",self)
+        self.calendartitle.setStyleSheet("color:white")
+        self.calendartitle.setGeometry(435, 470, 200, 20)
+        self.calendartitle.setFont(fontboldmed)
+        """
 
         self.setGeometry(0, 0, 1200, 800)
         self.show()
@@ -365,7 +443,47 @@ class Window(QMainWindow):
         # themes tab
         pass
 
+    def savee(self):
+        pass
+
+    # save in .json file thing
+
+    def togglenotess(self):
+        if self.togglenotes.isChecked():
+            self.notes.setVisible(False)
+            self.notesbg.setVisible(False)
+            self.notesheader.setVisible(False)
+        else:
+            self.notes.setVisible(True)
+            self.notesbg.setVisible(True)
+            self.notesheader.setVisible(True)
+
+    def togglechecklists(self):
+        if self.togglechecklist.isChecked():
+            self.checklistwidget.setVisible(False)
+            self.checklisttext.setVisible(False)
+        else:
+            self.checklistwidget.setVisible(True)
+            self.checklisttext.setVisible(True)
+
+    def togglecalendarr(self):
+        if self.togglecalendar.isChecked():
+            self.checklistwidget.setVisible(False)
+            self.checklisttext.setVisible(False)
+            self.notes.setVisible(False)
+            self.notesbg.setVisible(False)
+            self.notesheader.setVisible(False)
+        else:
+            self.checklistwidget.setVisible(True)
+            self.checklisttext.setVisible(True)
+            self.notes.setVisible(True)
+            self.notesbg.setVisible(True)
+            self.notesheader.setVisible(True)
+
 
 App = QApplication(sys.argv)
 window = Window()
 sys.exit(App.exec())
+
+# project notes, calendar will be on full screen with the ability to write on each pannel and set the month and the title name.
+# fix notes scrollbar
