@@ -347,6 +347,15 @@ class Window(QMainWindow):
             "QPushButton" "{" "background : #545454;" "border : #545454;" "}"
         )
 
+        self.togglesaving = QPushButton("💰", self)
+        self.togglesaving.setGeometry(80, 385, 20, 20)
+        self.togglesaving.setCheckable(True)
+        self.togglesaving.clicked.connect(self.togglesavingss)
+        self.togglesaving.setStyleSheet(
+            "QPushButton" "{" "background : #545454;" "border : #545454;" "}"
+        )
+
+
         self.notesbg = QLabel(self)
         self.notesbg.setStyleSheet(
             "QLabel"
@@ -374,10 +383,75 @@ class Window(QMainWindow):
         )
         self.notes.setGeometry(260, 360, 430, 80)
         self.notes.setFont(fontboldmed)
-        # self.notes.setVerticalScrollBar(scroll_bar_vertical)
+        scroll_bar_vertical_note = QScrollBar(self)
+        scroll_bar_vertical_note.setStyleSheet(
+            "QScrollBar"
+            "{"
+            "border: none;"
+            "background-color: #343434;"
+            "border-radius: 0px;"
+            "width: 14px;"
+            "margin: 15px 0 15px 0"
+            "}"
+            "QScrollBar::handle"
+            "{"
+            "background-color: #404040;"
+            "border-radius: 7px;"
+            "min-height: 30px;"
+            "}"
+            "QScrollBar::handle::pressed"
+            "{"
+            "background-color: #373737;"
+            "}"
+            "QScrollBar::handle::hover"
+            "{"
+            "background-color: #373737;"
+            "}"
+            "QScrollBar::sub-line"
+            "{"
+            "border: none;"
+            "background-color: rbg(59,59,90);"
+            "border-top-left-radius: 7px;"
+            "border-top-right-radius: 7px;"
+            "subcontrol-position: top;"
+            "subcontrol-origin: margin;"
+            "height: 15px;"
+            "}"
+            "QScrollBar::sub-line::pressed"
+            "{"
+            "background-color: #373737;"
+            "}"
+            "QScrollBar::sub-line::hover"
+            "{"
+            "background-color: #373737;"
+            "}"
+            "QScrollBar::add-line"
+            "{"
+            "border: none;"
+            "background-color: rgb(59,59,90);"
+            "height: 15px;"
+            "border-bottom-left-radius: 7px;"
+            "border-bottom-right-radius: 7px;"
+            "subcontrol-position: bottom;"
+            "subcontrol-origin: margin;"
+            "}"
+            "QScrollBar::add-line::pressed"
+            "{"
+            "background-color: #373737;"
+            "}"
+            "QScrollBar::add-line::hover:vertical"
+            "{"
+            "background-color: #373737;"
+            "}"
+            "QScrollBar::add-page:vertical, QScrollBar::sub-page"
+            "{"
+            "background: none;"
+            "}"
+        )
+        self.notes.setVerticalScrollBar(scroll_bar_vertical_note)
 
         # calendarv1
-        """
+
         self.calendar = QCalendarWidget(self)
         self.calendar.setGeometry(260, 500, 430, 250)
         self.calendar.setFont(fontboldsmall)
@@ -401,20 +475,35 @@ class Window(QMainWindow):
             "color:white;"
             "icon-size:0px"
             "}"
-            "QCalendarWidget QAbstractItemView" 
+            "QCalendarWidget QAbstractItemView"
             "{"
             "color: white;"
             "}"
         )
 
-        self.calendartitle = QLabel("Calendar",self)
+        self.calendartitle = QLabel("Calendar", self)
         self.calendartitle.setStyleSheet("color:white")
         self.calendartitle.setGeometry(435, 470, 200, 20)
         self.calendartitle.setFont(fontboldmed)
-        """
 
         self.setGeometry(0, 0, 1200, 800)
         self.show()
+
+        # work in progress
+
+    """
+        self.calendar.selectionChanged.connect(self.grab_date)  
+        self.Datething = QTextEdit("fgs",self)
+        self.Datething.setGeometry(435,750,200,20)
+        #self.Datething.setStyleSheet("color:white")
+        self.Datething.setFont(fontboldmed)
+        self.Datething.setVisible(False)       
+
+    def grab_date(self):
+        dateselected = self.calendar.selectedDate()
+        self.Datething.setText(str(dateselected.toString()))
+        self.Datething.setVisible(True)
+    """
 
     def showTime(self):
         self.current_time = QTime.currentTime()
@@ -468,17 +557,29 @@ class Window(QMainWindow):
 
     def togglecalendarr(self):
         if self.togglecalendar.isChecked():
-            self.checklistwidget.setVisible(False)
-            self.checklisttext.setVisible(False)
+            self.calendar.setVisible(False)
+            self.calendartitle.setVisible(False)
+        else:
+            self.calendar.setVisible(True)
+            self.calendartitle.setVisible(True)
+
+    def togglesavingss(self):
+        if self.togglesaving.isChecked():
             self.notes.setVisible(False)
             self.notesbg.setVisible(False)
             self.notesheader.setVisible(False)
+            self.calendar.setVisible(False)
+            self.calendartitle.setVisible(False)
+            self.checklistwidget.setVisible(False)
+            self.checklisttext.setVisible(False)
         else:
-            self.checklistwidget.setVisible(True)
-            self.checklisttext.setVisible(True)
             self.notes.setVisible(True)
             self.notesbg.setVisible(True)
             self.notesheader.setVisible(True)
+            self.calendar.setVisible(True)
+            self.calendartitle.setVisible(True)
+            self.checklistwidget.setVisible(True)
+            self.checklisttext.setVisible(True)
 
 
 App = QApplication(sys.argv)
