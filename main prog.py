@@ -355,6 +355,13 @@ class Window(QMainWindow):
             "QPushButton" "{" "background : #545454;" "border : #545454;" "}"
         )
 
+        self.togglepaints = QPushButton("🖌️", self)
+        self.togglepaints.setGeometry(105, 385, 20, 20)
+        self.togglepaints.setCheckable(True)
+        self.togglepaints.clicked.connect(self.togglecanvas)
+        self.togglepaints.setStyleSheet(
+            "QPushButton" "{" "background : #545454;" "border : #545454;" "}"
+        )
 
         self.notesbg = QLabel(self)
         self.notesbg.setStyleSheet(
@@ -450,7 +457,11 @@ class Window(QMainWindow):
         )
         self.notes.setVerticalScrollBar(scroll_bar_vertical_note)
 
-        # calendarv1
+        now = QDate.currentDate()
+        self.date = QLabel(now.toString("dd-MM-yyyy"), self)
+        self.date.setGeometry(1050, 230, 1000, 100)
+        self.date.setFont(fontboldsmall)
+        self.date.setStyleSheet("color:white")
 
         self.calendar = QCalendarWidget(self)
         self.calendar.setGeometry(260, 500, 430, 250)
@@ -485,6 +496,61 @@ class Window(QMainWindow):
         self.calendartitle.setStyleSheet("color:white")
         self.calendartitle.setGeometry(435, 470, 200, 20)
         self.calendartitle.setFont(fontboldmed)
+
+        self.savingsbg = QLabel("", self)
+        self.savingsbg.setStyleSheet("background-color: #272727")
+        self.savingsbg.setGeometry(250, 320, 900, 450)
+
+        self.savingstabbar = QLabel("", self)
+        self.savingstabbar.setStyleSheet("background-color: #363636")
+        self.savingstabbar.setGeometry(13, 450, 175, 200)
+
+        self.savingstabbarheader = QLabel("Your income", self)
+        self.savingstabbarheader.setStyleSheet("color: white")
+        self.savingstabbarheader.setFont(fontboldsmall)
+        self.savingstabbarheader.setGeometry(60, 470, 200, 20)
+
+        self.savingstabbarbtn = QPushButton("✔", self)
+        self.savingstabbarbtn.setStyleSheet(
+            "QPushButton"
+            "{"
+            "background-color: #545454;"
+            "border : #545454;"
+            "color : white;"
+            "}"
+        )
+        self.savingstabbarbtn.setFont(fontboldsmall)
+        self.savingstabbarbtn.setGeometry(156, 500, 20, 20)
+
+        self.amountmoney = QLineEdit("", self)
+        self.amountmoney.setGeometry(26, 500, 125, 20)
+        self.amountmoney.setStyleSheet(
+            "QLineEdit"
+            "{"
+            "background : #585858;"
+            "border : #585858;"
+            "color : white;"
+            "}"
+        )
+        self.amountmoney.setFont(fontboldsmall)
+
+        self.piggybank = QLabel(" ", self)
+        self.pixmap1 = QPixmap("pictures\piggybank.png")
+        self.piggybank.setPixmap(self.pixmap1)
+        self.piggybank.setGeometry(270, 300, 500, 500)
+
+        self.totalmoney = QLabel("test", self)
+        self.totalmoney.setStyleSheet("color:white")
+        self.totalmoney.setGeometry(400, 550, 200, 20)
+        self.totalmoney.setFont(fontbold)
+
+        self.savingsbg.setVisible(False)
+        self.savingstabbar.setVisible(False)
+        self.savingstabbarheader.setVisible(False)
+        self.piggybank.setVisible(False)
+        self.amountmoney.setVisible(False)
+        self.totalmoney.setVisible(False)
+        self.savingstabbarbtn.setVisible(False)
 
         self.setGeometry(0, 0, 1200, 800)
         self.show()
@@ -572,6 +638,41 @@ class Window(QMainWindow):
             self.calendartitle.setVisible(False)
             self.checklistwidget.setVisible(False)
             self.checklisttext.setVisible(False)
+            # savings
+            self.savingsbg.setVisible(True)
+            self.savingstabbar.setVisible(True)
+            self.savingstabbarheader.setVisible(True)
+            self.piggybank.setVisible(True)
+            self.amountmoney.setVisible(True)
+            self.totalmoney.setVisible(True)
+            self.savingstabbarbtn.setVisible(True)
+        else:
+            self.notes.setVisible(True)
+            self.notesbg.setVisible(True)
+            self.notesheader.setVisible(True)
+            self.calendar.setVisible(True)
+            self.calendartitle.setVisible(True)
+            self.checklistwidget.setVisible(True)
+            self.checklisttext.setVisible(True)
+            # savings
+            self.savingsbg.setVisible(False)
+            self.savingstabbar.setVisible(False)
+            self.savingstabbarheader.setVisible(False)
+            self.piggybank.setVisible(False)
+            self.amountmoney.setVisible(False)
+            self.totalmoney.setVisible(False)
+            self.savingstabbarbtn.setVisible(False)
+
+    def togglecanvas(self):
+        if self.togglepaints.isChecked():
+            self.notes.setVisible(False)
+            self.notesbg.setVisible(False)
+            self.notesheader.setVisible(False)
+            self.calendar.setVisible(False)
+            self.calendartitle.setVisible(False)
+            self.checklistwidget.setVisible(False)
+            self.checklisttext.setVisible(False)
+
         else:
             self.notes.setVisible(True)
             self.notesbg.setVisible(True)
