@@ -19,6 +19,7 @@ class Window(QMainWindow):
         fontboldsmall = QFont("Roboto Mono Medium", 8)
         fontboldverysmall = QFont("Roboto Mono Medium", 6)
         fontboldmed = QFont("Roboto Mono Medium", 11)
+        fontboldformood = QFont("Roboto Mono Medium", 13)
         font = QFont("Roboto Mono", 15)
         fontthin = QFont("Roboto Mono Thin", 15)
 
@@ -882,6 +883,225 @@ class Window(QMainWindow):
         SAVINGS END ##########################################################################################################################
         """
 
+        """
+        MOOD TRACKER
+        """
+        self.moodtrackertriggerbtn = QPushButton("🙂", self)
+        self.moodtrackertriggerbtn.setGeometry(130, 385, 20, 20)
+        self.moodtrackertriggerbtn.setCheckable(True)
+        self.moodtrackertriggerbtn.clicked.connect(self.togglemood)
+        self.moodtrackertriggerbtn.setStyleSheet(
+            "QPushButton" "{" "background : #545454;" "border : #545454;" "}"
+        )
+
+        self.moodbg = QLabel("", self)
+        self.moodbg.setStyleSheet("background-color: #272727")
+        self.moodbg.setGeometry(250, 320, 900, 470)
+
+        self.moodtitle = QLabel("Mood Tracker", self)
+        self.moodtitle.setStyleSheet("color:white")
+        self.moodtitle.setGeometry(275, 350, 200, 20)
+        self.moodtitle.setFont(fontboldmed)
+
+        self.month1 = QListWidget(self)
+        self.month1.setStyleSheet(
+            "QListWidget"
+            "{"
+            "background : #202020;"
+            "border : #202020;"
+            "color : white;"
+            "}"
+        )
+        self.month1.setGeometry(300, 730, 650, 30)
+        self.month1.setFont(fontboldmed)
+
+        self.month2 = QListWidget(self)
+        self.month2.setStyleSheet(
+            "QListWidget"
+            "{"
+            "background : #202020;"
+            "border : #202020;"
+            "color : white;"
+            "}"
+        )
+        self.month2.setGeometry(300, 700, 650, 30)
+        self.month2.setFont(fontboldmed)
+
+        self.month3 = QListWidget(self)
+        self.month3.setStyleSheet(
+            "QListWidget"
+            "{"
+            "background : #202020;"
+            "border : #202020;"
+            "color : white;"
+            "}"
+        )
+        self.month3.setGeometry(300, 670, 650, 30)
+        self.month3.setFont(fontboldmed)
+
+        self.month4 = QListWidget(self)
+        self.month4.setStyleSheet(
+            "QListWidget"
+            "{"
+            "background : #202020;"
+            "border : #202020;"
+            "color : white;"
+            "}"
+        )
+        self.month4.setGeometry(300, 640, 650, 30)
+        self.month4.setFont(fontboldmed)
+
+        self.month5 = QListWidget(self)
+        self.month5.setStyleSheet(
+            "QListWidget"
+            "{"
+            "background : #202020;"
+            "border : #202020;"
+            "color : white;"
+            "}"
+        )
+        self.month5.setGeometry(300, 610, 650, 30)
+        self.month5.setFont(fontboldmed)
+
+        self.month6 = QListWidget(self)
+        self.month6.setStyleSheet(
+            "QListWidget"
+            "{"
+            "background : #202020;"
+            "border : #202020;"
+            "color : white;"
+            "}"
+        )
+        self.month6.setGeometry(300, 580, 650, 30)
+        self.month6.setFont(fontboldmed)
+
+        self.month7 = QListWidget(self)
+        self.month7.setStyleSheet(
+            "QListWidget"
+            "{"
+            "background : #202020;"
+            "border : #202020;"
+            "color : white;"
+            "}"
+        )
+        self.month7.setGeometry(300, 550, 650, 30)
+        self.month7.setFont(fontboldmed)
+
+        self.month8 = QListWidget(self)
+        self.month8.setStyleSheet(
+            "QListWidget"
+            "{"
+            "background : #202020;"
+            "border : #202020;"
+            "color : white;"
+            "}"
+        )
+        self.month8.setGeometry(300, 520, 650, 30)
+        self.month8.setFont(fontboldmed)
+
+        self.month9 = QListWidget(self)
+        self.month9.setStyleSheet(
+            "QListWidget"
+            "{"
+            "background : #202020;"
+            "border : #202020;"
+            "color : white;"
+            "}"
+        )
+        self.month9.setGeometry(300, 490, 650, 30)
+        self.month9.setFont(fontboldmed)
+
+        self.month10 = QListWidget(self)
+        self.month10.setStyleSheet(
+            "QListWidget"
+            "{"
+            "background : #202020;"
+            "border : #202020;"
+            "color : white;"
+            "}"
+        )
+        self.month10.setGeometry(300, 460, 650, 30)
+        self.month10.setFont(fontboldmed)
+
+        self.month11 = QListWidget(self)
+        self.month11.setStyleSheet(
+            "QListWidget"
+            "{"
+            "background : #202020;"
+            "border : #202020;"
+            "color : white;"
+            "}"
+        )
+        self.month11.setGeometry(300, 430, 650, 30)
+        self.month11.setFont(fontboldmed)
+
+        self.month12 = QListWidget(self)
+        self.month12.setStyleSheet(
+            "QListWidget"
+            "{"
+            "background : #202020;"
+            "border : #202020;"
+            "color : white;"
+            "}"
+        )
+        self.month12.setGeometry(300, 400, 650, 30)
+        self.month12.setFont(fontboldmed)
+
+        self.monthnumside = QLabel(
+            "1 \n2 \n3 \n4 \n5 \n6 \n7 \n8 \n9 \n10 \n11 \n12", self
+        )
+        self.monthnumside.setGeometry(255, 80, 200, 1000)
+        self.monthnumside.setStyleSheet("color:white")
+        self.monthnumside.setFont(fontboldformood)
+
+        self.daynumshor = QLabel("Days 1 - 31", self)
+        self.daynumshor.setGeometry(510, 770, 1000, 30)
+        self.daynumshor.setStyleSheet("color:white")
+        self.daynumshor.setFont(fontboldformood)
+
+        self.month1.setSpacing(2)
+        self.month2.setSpacing(2)
+        self.month3.setSpacing(2)
+        self.month4.setSpacing(2)
+        self.month5.setSpacing(2)
+        self.month6.setSpacing(2)
+        self.month7.setSpacing(2)
+        self.month8.setSpacing(2)
+        self.month9.setSpacing(2)
+        self.mont10.setSpacing(2)
+        self.month11.setSpacing(2)
+        self.month12.setSpacing(2)
+
+        self.month1.setFlow(QListView.LeftToRight)
+        self.month2.setFlow(QListView.LeftToRight)
+        self.month3.setFlow(QListView.LeftToRight)
+        self.month4.setFlow(QListView.LeftToRight)
+        self.month5.setFlow(QListView.LeftToRight)
+        self.month6.setFlow(QListView.LeftToRight)
+        self.month7.setFlow(QListView.LeftToRight)
+        self.month8.setFlow(QListView.LeftToRight)
+        self.month9.setFlow(QListView.LeftToRight)
+        self.month10.setFlow(QListView.LeftToRight)
+        self.month11.setFlow(QListView.LeftToRight)
+        self.month12.setFlow(QListView.LeftToRight)
+
+        self.moodbg.setVisible(False)
+        self.moodtitle.setVisible(False)
+        self.month1.setVisible(False)
+        self.month2.setVisible(False)
+        self.month3.setVisible(False)
+        self.month4.setVisible(False)
+        self.month5.setVisible(False)
+        self.month6.setVisible(False)
+        self.month7.setVisible(False)
+        self.month8.setVisible(False)
+        self.month9.setVisible(False)
+        self.month10.setVisible(False)
+        self.month11.setVisible(False)
+        self.month12.setVisible(False)
+        self.monthnumside.setVisible(False)
+        self.daynumshor.setVisible(False)
+
         self.setGeometry(0, 0, 1200, 800)
         self.show()
 
@@ -1114,6 +1334,80 @@ class Window(QMainWindow):
             self.calendartitle.setVisible(True)
             self.checklistwidget.setVisible(True)
             self.checklisttext.setVisible(True)
+
+    def togglemood(self):
+        if self.moodtrackertriggerbtn.isChecked():
+            self.notes.setVisible(False)
+            self.notesbg.setVisible(False)
+            self.notesheader.setVisible(False)
+            self.calendar.setVisible(False)
+            self.calendartitle.setVisible(False)
+            self.checklistwidget.setVisible(False)
+            self.checklisttext.setVisible(False)
+            self.savingsbg.setVisible(False)
+            self.savingstabbar.setVisible(False)
+            self.savingstabbarheader.setVisible(False)
+            self.amountmoney.setVisible(False)
+            self.savingstabbarbtn.setVisible(False)
+            self.expensemoeny.setVisible(False)
+            self.expensemoenytabbarbtn.setVisible(False)
+            self.expensetabbarheader.setVisible(False)
+            self.totalmoney.setVisible(False)
+            self.clearmoney.setVisible(False)
+            self.Expenseheader.setVisible(False)
+            self.expensechecklistwidget.setVisible(False)
+            self.savingsheader.setVisible(False)
+            self.savingschecklistwidget.setVisible(False)
+            self.savingstabbarheaderd.setVisible(False)
+            self.detailss.setVisible(False)
+            self.expensedetails.setVisible(False)
+            self.expensedetailss.setVisible(False)
+            self.yourbalance.setVisible(False)
+            self.deletesavings.setVisible(False)
+            self.deletesavings2.setVisible(False)
+            self.savingswarning.setVisible(False)
+            # mood
+            self.moodbg.setVisible(True)
+            self.moodtitle.setVisible(True)
+            self.month1.setVisible(True)
+            self.month2.setVisible(True)
+            self.month3.setVisible(True)
+            self.month4.setVisible(True)
+            self.month5.setVisible(True)
+            self.month6.setVisible(True)
+            self.month7.setVisible(True)
+            self.month8.setVisible(True)
+            self.month9.setVisible(True)
+            self.month10.setVisible(True)
+            self.month11.setVisible(True)
+            self.month12.setVisible(True)
+            self.monthnumside.setVisible(True)
+            self.daynumshor.setVisible(True)
+        else:
+            self.notes.setVisible(True)
+            self.notesbg.setVisible(True)
+            self.notesheader.setVisible(True)
+            self.calendar.setVisible(True)
+            self.calendartitle.setVisible(True)
+            self.checklistwidget.setVisible(True)
+            self.checklisttext.setVisible(True)
+            # mood
+            self.moodbg.setVisible(False)
+            self.moodtitle.setVisible(False)
+            self.month1.setVisible(False)
+            self.month2.setVisible(False)
+            self.month3.setVisible(False)
+            self.month4.setVisible(False)
+            self.month5.setVisible(False)
+            self.month6.setVisible(False)
+            self.month7.setVisible(False)
+            self.month8.setVisible(False)
+            self.month9.setVisible(False)
+            self.month10.setVisible(False)
+            self.month11.setVisible(False)
+            self.month12.setVisible(False)
+            self.monthnumside.setVisible(False)
+            self.daynumshor.setVisible(False)
 
 
 App = QApplication(sys.argv)

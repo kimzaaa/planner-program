@@ -1,2 +1,1 @@
-
-        self.deletesavings2.setStyleSheet(
+"", self
