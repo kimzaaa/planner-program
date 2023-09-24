@@ -1,1 +1,2 @@
-"", self
+
+            self.savingsbg.setVisible(False)
