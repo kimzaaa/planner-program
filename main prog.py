@@ -1170,7 +1170,10 @@ class Window(QMainWindow):
         )
         self.selectcolor.setFont(fontboldsmall)
 
-        self.moodnotes = QLabel("🟥: Very bad mood \n🟧: bad mood \n🟨: Normal mood \n🟩 Good mood \n🟦 Very good mood    ",self)
+        self.moodnotes = QLabel(
+            "🟥: Very bad mood \n🟧: bad mood \n🟨: Normal mood \n🟩 Good mood \n🟦 Very good mood    ",
+            self,
+        )
         self.moodnotes.setGeometry(20, 560, 200, 100)
         self.moodnotes.setStyleSheet("color:white")
         self.moodnotes.setFont(fontboldsmall)
@@ -1246,12 +1249,20 @@ class Window(QMainWindow):
         SETTINGS ########################################################################################################################
         """
 
-        self.settingsbg = QLabel("",self)
+        self.settingsbg = QLabel("", self)
         self.settingsbg.setStyleSheet("background-color: #272727")
-        self.settingsbg.setGeometry(0,0,1200,800)
+        self.settingsbg.setGeometry(0, 0, 1200, 800)
 
-        self.settingbackbtn = QPushButton("<",self)
-        self.settingbackbtn.setGeometry(90, 675, 20, 20)
+        self.howto = QLabel(
+            "HOW TO USE WIP!: \n \nThe program is split to 3 main parts. The picture banner, the side tabbar and the main interface. \nThe picture banner is changable in settings. You can select your own banner or a custom one. \nSecond is the side tabbar. It is packed with fuctions and button so, I will explain it: \nThe first row is for setting the title of the planner by changing the name then click the check button \nNext is adding the todo list. It is one of the most important feature in this program!",
+            self,
+        )
+        self.howto.setGeometry(30, 60, 1200, 375)
+        self.howto.setStyleSheet("color:white")
+        self.howto.setFont(fontboldmed)
+
+        self.settingbackbtn = QPushButton("<", self)
+        self.settingbackbtn.setGeometry(20, 100, 50, 50)
         self.settingbackbtn.setStyleSheet(
             "QPushButton"
             "{"
@@ -1261,33 +1272,50 @@ class Window(QMainWindow):
             "}"
         )
         self.settingbackbtn.clicked.connect(self.backtonorm)
+        self.settingbackbtn.setFont(fontboldmed)
 
-        self.logo = QLabel("WIP",self)
-        self.logo.setGeometry(30, 30, 150, 50)
+        self.logo = QLabel("WIP", self)
+        self.logo.setGeometry(30, 30, 150, 30)
         self.logo.setStyleSheet("color:white")
         self.logo.setFont(fontbold)
 
+        self.Featuresbtn = QPushButton("How to", self)
+        self.Featuresbtn.setGeometry(90, 100, 100, 50)
+        self.Featuresbtn.setStyleSheet(
+            "QPushButton"
+            "{"
+            "background : #484848;"
+            "border: #484848;"
+            "color:white;"
+            "}"
+        )
+        self.Featuresbtn.setFont(fontboldmed)
+
         self.settingsbg.setVisible(False)
         self.settingbackbtn.setVisible(False)
+        self.Featuresbtn.setVisible(False)
+        self.howto.setVisible(False)
+
+        """
+        SUEFUL STUDY TOOLS ########################################################################################################################
+        """
+
+        self.usefultoolbtn = QPushButton("🛠️", self)
+        self.usefultoolbtn.setGeometry(155, 385, 20, 20)
+        self.usefultoolbtn.setCheckable(True)
+        self.usefultoolbtn.clicked.connect(self.toggletools)
+        self.usefultoolbtn.setStyleSheet(
+            "QPushButton" "{" "background : #545454;" "border : #545454;" "}"
+        )
+
+        self.toolsbg = QLabel("", self)
+        self.toolsbg.setGeometry(200, 300, 1000, 650)
+        self.toolsbg.setStyleSheet("background: #2E2E2E")
+
+        self.toolsbg.setVisible(False)
 
         self.setGeometry(0, 0, 1200, 800)
         self.show()
-
-        # work in progress
-
-    """
-        self.calendar.selectionChanged.connect(self.grab_date)  
-        self.Datething = QTextEdit("fgs",self)
-        self.Datething.setGeometry(435,750,200,20)
-        #self.Datething.setStyleSheet("color:white")
-        self.Datething.setFont(fontboldmed)
-        self.Datething.setVisible(False)       
-
-    def grab_date(self):
-        dateselected = self.calendar.selectedDate()
-        self.Datething.setText(str(dateselected.toString()))
-        self.Datething.setVisible(True)
-    """
 
     def showTime(self):
         self.current_time = QTime.currentTime()
@@ -1316,13 +1344,25 @@ class Window(QMainWindow):
         if self.setting.isChecked():
             self.settingsbg.setVisible(True)
             self.settingbackbtn.setVisible(True)
+            self.Featuresbtn.setVisible(True)
+            self.howto.setVisible(True)
+
+            self.usefultoolbtn.setVisible(False)
         else:
             self.settingsbg.setVisible(False)
             self.settingbackbtn.setVisible(False)
-    
+            self.Featuresbtn.setVisible(False)
+            self.howto.setVisible(False)
+
+            self.usefultoolbtn.setVisible(True)
+
     def backtonorm(self):
         self.settingsbg.setVisible(False)
         self.settingbackbtn.setVisible(False)
+        self.Featuresbtn.setVisible(False)
+        self.howto.setVisible(False)
+
+        self.usefultoolbtn.setVisible(True)
 
     def savee(self):
         pass
@@ -1499,6 +1539,8 @@ class Window(QMainWindow):
             self.selectmonth.setVisible(False)
             self.selectmonthtitle.setVisible(False)
             self.deletemood.setVisible(False)
+
+            self.toolsbg.setVisible(False)
             # savings
             self.savingsbg.setVisible(True)
             self.savingstabbar.setVisible(True)
@@ -1614,6 +1656,7 @@ class Window(QMainWindow):
             self.selectmonth.setVisible(False)
             self.selectmonthtitle.setVisible(False)
             self.deletemood.setVisible(False)
+            self.toolsbg.setVisible(False)
 
         else:
             self.notes.setVisible(True)
@@ -1684,6 +1727,7 @@ class Window(QMainWindow):
             self.moodoptions.setVisible(True)
             self.moodnotes.setVisible(True)
             self.deletemood.setVisible(True)
+            self.toolsbg.setVisible(False)
         else:
             self.notes.setVisible(True)
             self.notesbg.setVisible(True)
@@ -1721,6 +1765,12 @@ class Window(QMainWindow):
             self.moodoptions.setVisible(False)
             self.moodnotes.setVisible(False)
             self.deletemood.setVisible(False)
+
+    def toggletools(self):
+        if self.usefultoolbtn.isChecked():
+            self.toolsbg.setVisible(True)
+        else:
+            self.toolsbg.setVisible(False)
 
 
 App = QApplication(sys.argv)
