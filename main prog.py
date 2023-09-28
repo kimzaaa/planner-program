@@ -1253,11 +1253,8 @@ class Window(QMainWindow):
         self.settingsbg.setStyleSheet("background-color: #272727")
         self.settingsbg.setGeometry(0, 0, 1200, 800)
 
-        self.howto = QLabel(
-            "HOW TO USE WIP!: \n \nThe program is split to 3 main parts. The picture banner, the side tabbar and the main interface. \nThe picture banner is changable in settings. You can select your own banner or a custom one. \nSecond is the side tabbar. It is packed with fuctions and button so, I will explain it: \nThe first row is for setting the title of the planner by changing the name then click the check button \nNext is adding the todo list. It is one of the most important feature in this program!",
-            self,
-        )
-        self.howto.setGeometry(30, 60, 1200, 375)
+        self.howto = QLabel("HOW TO USE WIP!: \n[Youtube video placeholder]", self)
+        self.howto.setGeometry(30, 30, 1200, 375)
         self.howto.setStyleSheet("color:white")
         self.howto.setFont(fontboldmed)
 
@@ -1274,26 +1271,63 @@ class Window(QMainWindow):
         self.settingbackbtn.clicked.connect(self.backtonorm)
         self.settingbackbtn.setFont(fontboldmed)
 
+        """
+        Change Banner settings ###########################################################################################################
+        """
+
+        self.backgroundchangingtitle = QLabel("Change background", self)
+        self.backgroundchangingtitle.setStyleSheet("color:white")
+        self.backgroundchangingtitle.setFont(fontboldmed)
+        self.backgroundchangingtitle.setGeometry(820, 180, 200, 20)
+        self.backgroundchangingtitle.setVisible(False)
+
+        self.banner1 = QPushButton(self)
+        self.banner1.setStyleSheet(
+            "background-image : url(pictures/bannerpopup1.png); border:none"
+        )
+        self.banner1.setGeometry(700, 220, 200, 80)
+        self.banner1.setVisible(False)
+
+        self.banner2 = QPushButton(self)
+        self.banner2.setStyleSheet(
+            "background-image : url(pictures/bannerpopup2.png); border:none"
+        )
+        self.banner2.setGeometry(920, 220, 200, 80)
+        self.banner2.setVisible(False)
+
+        self.banner3 = QPushButton(self)
+        self.banner3.setStyleSheet(
+            "background-image : url(pictures/bannerpopup3png.png); border:none"
+        )
+        self.banner3.setGeometry(700, 320, 200, 80)
+        self.banner3.setVisible(False)
+
+        self.banner4 = QPushButton(self)
+        self.banner4.setStyleSheet(
+            "background-image : url(pictures/bannerpopup4.png); border:none"
+        )
+        self.banner4.setGeometry(920, 320, 200, 80)
+        self.banner4.setVisible(False)
+
+        self.banner5 = QPushButton(self)
+        self.banner5.setStyleSheet(
+            "background-image : url(pictures/bannerpopup5.png); border:none"
+        )
+        self.banner5.setGeometry(700, 420, 200, 80)
+        self.banner5.setVisible(False)
+
+        self.bannercustom = QPushButton(self)
+        self.bannercustom.setStyleSheet("background-color:white")
+        self.bannercustom.setGeometry(920, 420, 200, 80)
+        self.bannercustom.setVisible(False)
+
         self.logo = QLabel("WIP", self)
         self.logo.setGeometry(30, 30, 150, 30)
         self.logo.setStyleSheet("color:white")
         self.logo.setFont(fontbold)
 
-        self.Featuresbtn = QPushButton("How to", self)
-        self.Featuresbtn.setGeometry(90, 100, 100, 50)
-        self.Featuresbtn.setStyleSheet(
-            "QPushButton"
-            "{"
-            "background : #484848;"
-            "border: #484848;"
-            "color:white;"
-            "}"
-        )
-        self.Featuresbtn.setFont(fontboldmed)
-
         self.settingsbg.setVisible(False)
         self.settingbackbtn.setVisible(False)
-        self.Featuresbtn.setVisible(False)
         self.howto.setVisible(False)
 
         """
@@ -1344,23 +1378,30 @@ class Window(QMainWindow):
         if self.setting.isChecked():
             self.settingsbg.setVisible(True)
             self.settingbackbtn.setVisible(True)
-            self.Featuresbtn.setVisible(True)
             self.howto.setVisible(True)
+            self.banner1.setVisible(True)
+            self.banner2.setVisible(True)
+            self.banner3.setVisible(True)
+            self.banner4.setVisible(True)
+            self.banner5.setVisible(True)
+            self.bannercustom.setVisible(True)
+            self.backgroundchangingtitle.setVisible(True)
 
             self.usefultoolbtn.setVisible(False)
         else:
-            self.settingsbg.setVisible(False)
-            self.settingbackbtn.setVisible(False)
-            self.Featuresbtn.setVisible(False)
-            self.howto.setVisible(False)
-
-            self.usefultoolbtn.setVisible(True)
+            pass
 
     def backtonorm(self):
         self.settingsbg.setVisible(False)
         self.settingbackbtn.setVisible(False)
-        self.Featuresbtn.setVisible(False)
         self.howto.setVisible(False)
+        self.banner1.setVisible(False)
+        self.banner2.setVisible(False)
+        self.banner3.setVisible(False)
+        self.banner4.setVisible(False)
+        self.banner5.setVisible(False)
+        self.bannercustom.setVisible(False)
+        self.backgroundchangingtitle.setVisible(False)
 
         self.usefultoolbtn.setVisible(True)
 
@@ -1776,3 +1817,9 @@ class Window(QMainWindow):
 App = QApplication(sys.argv)
 window = Window()
 sys.exit(App.exec())
+
+
+# credits for the pictures
+# imxhelios
+# behance
+# twitter inc
